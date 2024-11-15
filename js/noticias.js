@@ -2,7 +2,19 @@ const url = 'https://corsproxy.io/?' + encodeURIComponent('https://api.provincia
 
 axios.get(url)
 .then(response => {
-    console.log(response.data); // Maneja los datos de la respuesta
+    let noticias = response.data.data.noticias;
+    console.log(noticias);
+    /*
+    let card = 
+    <div class="card">
+                    <img src="https://via.placeholder.com/300" alt="Imagen de la tarjeta" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">Título de la Tarjeta</h3>
+                        <p class="card-description">Esta es una descripción breve de la tarjeta. Aquí puedes poner más detalles si lo deseas.</p>
+                        <button class="card-button">Leer más</button>
+                    </div>
+                </div>
+    */
 })
 .catch(error => {
     console.error('Error:', error); // Maneja errores
