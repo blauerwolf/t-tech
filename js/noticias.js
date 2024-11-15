@@ -1,4 +1,6 @@
 fetch('https://api.provinciaradio.com.ar/v1/noticias', {
+    method: 'GET',
+    mode: 'cors',
     headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*'
