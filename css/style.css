@@ -18,6 +18,8 @@
 
     --gradiente1: linear-gradient(to left, var(--colorPrimario), var(--colorAcento));
     --gradiente2: linear-gradient(to right, var(--colorPrimario), var(--colorAcento));
+    --gradiente3: linear-gradient(to right, var(--colorLight), var(--colorSection));
+    --gradiente4: linear-gradient(to left, var(--colorLight), var(--colorSection));
 }
 
 * {
@@ -151,9 +153,17 @@ footer ul li {
     margin-top: 60px;
     padding-left: 20px;
     padding-top: 80px;
+    background-color: var(--colorLight);
+    min-height: 350px;
 
 }
 
+#noticias {
+    background-color: var(--colorBody);
+    min-height: 500px;
+    background: var(--gradiente3);
+    padding-left: 20px;
+}
 .noticias-container {
     display: flex;
     align-items: center;
