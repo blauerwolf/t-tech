@@ -53,10 +53,7 @@ function crearCard(cardId, imageUrl, title, description) {
 
 async function getNoticias(url, pagina = 1) {
     try {
-        const response = await axios.get(url, {
-            mode: 'no-cors',
-            params: { pagina: pagina }            
-        });
+        const response = await axios.get(url + `?pagina=${pagina}`);
 
         const noticias = response.data.data.noticias;
         console.log(noticias);
@@ -102,8 +99,8 @@ axios.get(url)
 (async() => {
     const noticias = await getNoticias(url, pagina);
     if (noticias) {
-        noticias.forEach(e => {
-            crearCard(noticias[i].id, noticias[i].cartelera, noticias[i].titulo, noticias[i].subtitulo);
+        noticias.forEach(n => {
+            crearCard(n.id, n.cartelera, n.titulo, n.subtitulo);
         })
 
         pagina++;
@@ -112,6 +109,7 @@ axios.get(url)
 
 const btnMasNoticias = document.getElementById("btnCargar")
 .addEventListener('click', async function() {
+    console.log("PAGINA: ", pagina);
     const noticias = await getNoticias(url, pagina);
     agregarNoticias(noticias);
     pagina++;
