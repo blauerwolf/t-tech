@@ -70,59 +70,6 @@ body {
     transition: background-color 0.5s ease;  
 }
 
-/*
-.topbar {
-    position: fixed;
-    top: 0;
-    height: 100px;
-    width: 100%;
-    background-color: var(--colorDark);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
-    margin-bottom: 20px;
-    z-index: 100;
-}
-
-.logo img {
-    height: 85px;
-    padding: 0 50px;        
-}
-
-nav {
-    margin-left: 10px;
-    
-}
-
-.navbar {
-    list-style-type: none;                
-    overflow: hidden;
-    display: flex;            
-    justify-content: right;       
-    align-items: right;
-}
-
-.navbar li {
-    display: inline;               
-}
-
-.navbar li a {
-    display: block;
-    color: white;                   
-    text-align: center;
-    padding: 14px 20px;
-    text-decoration: none;          
-    font-size: 16px;
-}
-
-.navbar li a:hover {
-    background-color: var(--colorShadow);         
-    color: var(--colorBody);                 
-    transition: background-color 0.5s ease;  
-}
-    */
-
 main {
     background-color: var(--colorLight);
 }
@@ -313,17 +260,17 @@ footer ul li {
 
 .video-background {
     position: absolute;
-    top: 50%
+    top: 50%;
     left: 50%;
     width: 100%;
     transform: translate(-50%, -50%);
-    z-indez: -1;
+    z-index: -1;
     object-fit: cover;
 }
 
 .content {
     position: relative;
-    z-indez: 1;
+    z-index: 1;
     color: white;
     text-align: center;
 }
