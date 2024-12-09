@@ -15,6 +15,7 @@
     --colorSection: #7AB2D3;
     --colorDark: #4A628A;
     --colorShadow: #415579;
+    --colorDarkTranslucent: rgba(74, 98, 138, 0.85);
 
     --gradiente1: linear-gradient(to left, var(--colorPrimario), var(--colorAcento));
     --gradiente2: linear-gradient(to right, var(--colorPrimario), var(--colorAcento));
@@ -32,6 +33,44 @@ body {
     background-color: var(--colorLight);
 }
 
+.navbar-transparent {
+    background-color: var(--colorDarkTranslucent);
+    backdrop-filter: blur(10px); /* Efecto de desenfoque detrás */
+}
+
+/* Separación entre elementos del menú */
+.navbar-nav .nav-link {
+    margin-right: 15px; /* Ajusta el valor para más o menos separación */
+}
+
+.navbar {
+    list-style-type: none;                
+    overflow: hidden;
+    display: flex;            
+    justify-content: right;       
+    align-items: right;
+}
+
+.navbar li {
+    display: inline;               
+}
+
+.navbar li a {
+    display: block;
+    color: white;                   
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;          
+    font-size: 16px;
+}
+
+.navbar li a:hover {
+    background-color: var(--colorShadow);         
+    color: var(--colorBody);                 
+    transition: background-color 0.5s ease;  
+}
+
+/*
 .topbar {
     position: fixed;
     top: 0;
@@ -82,6 +121,7 @@ nav {
     color: var(--colorBody);                 
     transition: background-color 0.5s ease;  
 }
+    */
 
 main {
     background-color: var(--colorLight);
