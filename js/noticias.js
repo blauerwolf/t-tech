@@ -1,5 +1,6 @@
-//const url = 'https://corsproxy.io/?' + encodeURIComponent('https://api.provinciaradio.com.ar/v1/noticias');
-const url = 'https://api.provinciaradio.com.ar/v1/noticias';
+const proxy = 'https://corsproxy.io/?';
+const targetUrl = 'https://api.provinciaradio.com.ar/v1/noticias';
+const url = `${proxy}${encodeURIComponent(targetUrl)}`;
 let pagina = 1;
 
 
