@@ -34,6 +34,7 @@ function crearCard(cardId, imageUrl, title, description) {
     
     const likeIcon = document.createElement('i');
     likeIcon.className = 'fa-regular fa-heart pe-4';
+    likeIcon.id = cardId;
 
 
     likeButton.appendChild(likeIcon);
@@ -72,7 +73,37 @@ async function getNoticias(url, pagina = 1) {
 function agregarNoticias(noticias) {
     noticias.forEach((e) => {
         crearCard(e.id, e.cartelera, e.titulo, e.subtitulo);
+        cargarFavoritos();
     })
+}
+
+function cargarFavoritos() {
+    const favoritosId = JSON.parse(localStorage.getItem('noticiasFavoritas')) || [];
+    favoritosId.forEach((cardId) => {
+        const likeHeart = document.querySelector(`button[data-card-id="${cardId}"] i`);
+
+        if (likeHeart) {
+            likeHeart.classList.remove('fa-regular');
+            likeHeart.classList.add('fa-solid');
+        }
+    });
+}
+
+function toogleFavoritos(cardId, icon) {
+    console.log(cardId, icon);
+    let favoritosIds = JSON.parse(localStorage.getItem('noticiasFavoritas')) || [];
+
+    if (favoritosIds.includes(cardId)) {
+        favoritosIds = favoritosIds.filter((id) => id !== cardId);
+        icon.classList.remove('fa-solid');
+        icon.classList.add('fa-regular');
+    } else {
+        favoritosIds.push(cardId);
+        icon.classList.remove('fa-regular');
+        icon.classList.add('fa-solid');
+    }
+
+    localStorage.setItem('noticiasFavoritas', JSON.stringify(favoritosIds));
 }
 
 
@@ -101,7 +132,12 @@ const btnMasNoticias = document.getElementById("btnCargar")
 document.getElementById('noticias-container').addEventListener('click', (event) => {
     if (event.target.classList.contains('fa-heart')) {
         const icon = event.target;
+        const cardId = icon.id;
+        console.log(cardId);
 
+        toogleFavoritos(cardId, icon);
+
+        /*
         if (icon.classList.contains('fa-regular')) {
             icon.classList.remove('fa-regular');
             icon.classList.add('fa-solid');
@@ -113,5 +149,11 @@ document.getElementById('noticias-container').addEventListener('click', (event) 
 
             // TODO: QUITAR DE FAVORITOS
         }
+        */
     }
-})
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    cargarFavoritos();
+});
