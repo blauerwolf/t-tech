@@ -31,11 +31,10 @@ function crearCard(cardId, imageUrl, title, description) {
 
     const likeButton = document.createElement('button');
     likeButton.className = 'like-btn';
+    likeButton.dataset.cardId = cardId;
     
     const likeIcon = document.createElement('i');
     likeIcon.className = 'fa-regular fa-heart pe-4';
-    likeIcon.id = cardId;
-
 
     likeButton.appendChild(likeIcon);
     footer.appendChild(boton);
@@ -80,6 +79,7 @@ function agregarNoticias(noticias) {
 function cargarFavoritos() {
     const favoritosId = JSON.parse(localStorage.getItem('noticiasFavoritas')) || [];
     favoritosId.forEach((cardId) => {
+
         const likeHeart = document.querySelector(`button[data-card-id="${cardId}"] i`);
 
         if (likeHeart) {
@@ -90,7 +90,6 @@ function cargarFavoritos() {
 }
 
 function toogleFavoritos(cardId, icon) {
-    console.log(cardId, icon);
     let favoritosIds = JSON.parse(localStorage.getItem('noticiasFavoritas')) || [];
 
     if (favoritosIds.includes(cardId)) {
@@ -113,6 +112,7 @@ function toogleFavoritos(cardId, icon) {
     if (noticias) {
         noticias.forEach(n => {
             crearCard(n.id, n.cartelera, n.titulo, n.subtitulo);
+            cargarFavoritos();
         })
 
         pagina++;
@@ -122,7 +122,6 @@ function toogleFavoritos(cardId, icon) {
 
 const btnMasNoticias = document.getElementById("btnCargar")
 .addEventListener('click', async function() {
-    console.log("PAGINA: ", pagina);
     const noticias = await getNoticias(url, pagina);
     agregarNoticias(noticias);
     pagina++;
@@ -132,24 +131,10 @@ const btnMasNoticias = document.getElementById("btnCargar")
 document.getElementById('noticias-container').addEventListener('click', (event) => {
     if (event.target.classList.contains('fa-heart')) {
         const icon = event.target;
-        const cardId = icon.id;
-        console.log(cardId);
+        const button = icon.closest('button.like-btn');
+        const cardId = button.dataset.cardId;
 
         toogleFavoritos(cardId, icon);
-
-        /*
-        if (icon.classList.contains('fa-regular')) {
-            icon.classList.remove('fa-regular');
-            icon.classList.add('fa-solid');
-
-            // TODO: AGREGAR A FAVORITOS
-        } else {
-            icon.classList.remove('fa-solid');
-            icon.classList.add('fa-regular');
-
-            // TODO: QUITAR DE FAVORITOS
-        }
-        */
     }
 });
 
