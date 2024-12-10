@@ -1,10 +1,61 @@
-const proxy = 'https://corsproxy.io/?';
-const targetUrl = 'https://api.provinciaradio.com.ar/v1/noticias';
-const url = `${proxy}${encodeURIComponent(targetUrl)}`;
+const url = 'https://api.provinciaradio.com.ar/v1/noticias';
 let pagina = 1;
 
-
 function crearCard(cardId, imageUrl, title, description) {
+    const card = document.createElement('div');
+    card.className = 'card mb-5 shadow';
+    card.id = cardId;
+
+    const img = document.createElement('img');
+    img.src = imageUrl;
+    img.alt = 'Imagen de la tarjeta';
+    img.className = 'card-img-top card-img-fixed';
+
+    const cardBody = document.createElement('div');
+    cardBody.className = 'card-body';
+
+    const cardTitle = document.createElement('h5');
+    cardTitle.className = 'card-title';
+    cardTitle.textContent = title;
+
+    const cardDescription = document.createElement('p');
+    cardDescription.className = 'card-text';
+    cardDescription.textContent = description;
+
+    const footer = document.createElement('div');
+    footer.className = 'd-flex justify-content-between align-items-center';
+
+    const boton = document.createElement('a');
+    boton.className = 'btn btn-primary';
+    boton.textContent = 'Leer más';
+
+    const likeButton = document.createElement('button');
+    likeButton.className = 'like-btn';
+    
+    const likeIcon = document.createElement('i');
+    likeIcon.className = 'fa-regular fa-heart pe-4';
+
+
+    likeButton.appendChild(likeIcon);
+    footer.appendChild(boton);
+    footer.appendChild(likeButton);
+    cardBody.appendChild(cardTitle);
+    cardBody.appendChild(cardDescription);
+    cardBody.appendChild(footer);
+    card.appendChild(img);
+    card.appendChild(cardBody);
+
+    // Agregar la tarjeta al contenedor "noticias-container"
+    const noticiasContainer = document.getElementById('noticias-container');
+    if (noticiasContainer) {
+        noticiasContainer.appendChild(card);
+    } else {
+        console.error('El contenedor con el ID "noticias-container" no existe.');
+    }
+}
+
+
+function crearCard2(cardId, imageUrl, title, description) {
     // Crear el contenedor de la tarjeta
     const card = document.createElement('div');
     card.className = 'card';
@@ -53,7 +104,9 @@ function crearCard(cardId, imageUrl, title, description) {
 
 async function getNoticias(url, pagina = 1) {
     try {
-        const response = await axios.get(url + `?pagina=${pagina}`);
+        const response = await axios.get(url, {
+            params: { pagina: pagina }
+        });
 
         const noticias = response.data.data.noticias;
         console.log(noticias);
@@ -71,32 +124,8 @@ function agregarNoticias(noticias) {
 }
 
 
-axios.get(url)
-.then(response => {
-    let noticias = response.data.data.noticias;
-    console.log(noticias);
-    for (let i = 0; i < 4; i++) {
-        crearCard(noticias[i].id, noticias[i].cartelera, noticias[i].titulo, noticias[i].subtitulo);
-        /*
-        let card = document.getElementById(i);
-        let h3 = card.querySelector("h3");
-        let p = card.querySelector("p");
-        let img = card.querySelector("img");
-
-        h3.textContent = noticias[i].titulo;
-        p.textContent = noticias[i].subtitulo;
-        img.src = noticias[i].cartelera;
-        */
-    }
-})
-.catch(error => {
-    console.error('Error:', error); // Maneja errores
-});
-
-
-
-
 (async() => {
+
     const noticias = await getNoticias(url, pagina);
     if (noticias) {
         noticias.forEach(n => {
@@ -107,10 +136,30 @@ axios.get(url)
     }   
 })()
 
+
 const btnMasNoticias = document.getElementById("btnCargar")
 .addEventListener('click', async function() {
     console.log("PAGINA: ", pagina);
     const noticias = await getNoticias(url, pagina);
     agregarNoticias(noticias);
     pagina++;
+})
+
+
+document.getElementById('noticias-container').addEventListener('click', (event) => {
+    if (event.target.classList.contains('fa-heart')) {
+        const icon = event.target;
+
+        if (icon.classList.contains('fa-regular')) {
+            icon.classList.remove('fa-regular');
+            icon.classList.add('fa-solid');
+
+            // TODO: AGREGAR A FAVORITOS
+        } else {
+            icon.classList.remove('fa-solid');
+            icon.classList.add('fa-regular');
+
+            // TODO: QUITAR DE FAVORITOS
+        }
+    }
 })
