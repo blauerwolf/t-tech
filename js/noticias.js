@@ -23,7 +23,7 @@ function crearCard(cardId, imageUrl, title, description) {
     cardDescription.textContent = description;
 
     const footer = document.createElement('div');
-    footer.className = 'd-flex justify-content-between align-items-center';
+    footer.className = 'card-footer-buttons d-flex justify-content-between align-items-center mt-auto';
 
     const boton = document.createElement('a');
     boton.className = 'btn btn-primary';
@@ -44,54 +44,6 @@ function crearCard(cardId, imageUrl, title, description) {
     cardBody.appendChild(footer);
     card.appendChild(img);
     card.appendChild(cardBody);
-
-    // Agregar la tarjeta al contenedor "noticias-container"
-    const noticiasContainer = document.getElementById('noticias-container');
-    if (noticiasContainer) {
-        noticiasContainer.appendChild(card);
-    } else {
-        console.error('El contenedor con el ID "noticias-container" no existe.');
-    }
-}
-
-
-function crearCard2(cardId, imageUrl, title, description) {
-    // Crear el contenedor de la tarjeta
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.id = cardId; // Asignar el ID dinámicamente
-
-    // Crear la imagen de la tarjeta
-    const img = document.createElement('img');
-    img.src = imageUrl; // Asignar la URL de la imagen
-    img.alt = 'Imagen de la tarjeta';
-    img.className = 'card-image';
-
-    // Crear el contenedor del contenido
-    const cardContent = document.createElement('div');
-    cardContent.className = 'card-content';
-
-    // Crear el título de la tarjeta
-    const cardTitle = document.createElement('h3');
-    cardTitle.className = 'card-title';
-    cardTitle.textContent = title; // Asignar el título dinámicamente
-
-    // Crear la descripción de la tarjeta
-    const cardDescription = document.createElement('p');
-    cardDescription.className = 'card-description';
-    cardDescription.textContent = description; // Asignar la descripción dinámica
-
-    // Crear el botón de la tarjeta
-    const cardButton = document.createElement('button');
-    cardButton.className = 'card-button';
-    cardButton.textContent = 'Leer más';
-
-    // Ensamblar la tarjeta
-    cardContent.appendChild(cardTitle);
-    cardContent.appendChild(cardDescription);
-    cardContent.appendChild(cardButton);
-    card.appendChild(img);
-    card.appendChild(cardContent);
 
     // Agregar la tarjeta al contenedor "noticias-container"
     const noticiasContainer = document.getElementById('noticias-container');
