@@ -45,9 +45,12 @@ function crearDetalleNoticia(data) {
     volanta.className = 'noticia-volanta';
     volanta.textContent = data.volanta;
 
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(data.texto, "text/html");
+    
     const texto = document.createElement('div');
     texto.className = 'noticia-texto';
-    texto.textContent = data.texto;
+    texto.innerHTML = doc.body.innerHTML;
 
     button.appendChild(icon);
 
