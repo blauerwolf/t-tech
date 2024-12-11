@@ -26,7 +26,7 @@ function crearCard(cardId, imageUrl, title, description) {
     footer.className = 'card-footer-buttons d-flex justify-content-between align-items-center mt-auto';
 
     const boton = document.createElement('a');
-    boton.className = 'btn btn-primary';
+    boton.className = 'btn btn-primary btn-accent';
     boton.textContent = 'Leer más';
 
     const likeButton = document.createElement('button');

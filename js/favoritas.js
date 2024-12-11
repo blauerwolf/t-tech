@@ -12,6 +12,17 @@ async function getNoticiaById(noticiaId) {
 
 function crearDetalleNoticia(data) {
     console.log(data);
+
+    const contenedor = document.createElement('div');
+    contenedor.className = 'card';
+
+    const imgContainer = document.createElement('div');
+    const img = document.createElement('img');
+    img.src = data.cartelera;
+    img.alt = 'Imagen de la noticia';
+
+    
+
 }
 
 function cargarDetalleFavoritos() {
