@@ -1,7 +1,3 @@
-function listarNoticias() {
-
-}
-
 function verificarForm() {
     let name = document.getElementById("name");
     let email = document.getElementById("email");

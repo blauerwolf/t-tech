@@ -269,6 +269,12 @@ footer ul li {
     transform: scale(1.2);
 }
 
+.card-wide {
+    width: 100%;
+    height: 450px;
+    transition: transform 0.3s ease-in-out; 
+}
+
 .video-container {
     position: relative;
     width: 100%;
@@ -359,6 +365,11 @@ footer ul li {
     background-color: var(--colorDark);
 }
 
+.favoritas {
+    min-height: 400px;
+    margin-top: 50px!important;
+}
+
 /* Responsividad */
 @media (max-width: 576px) {
     .container {
@@ -394,6 +405,14 @@ footer ul li {
         display: inline;
         padding-right: 35px;
     }
+}
+
+.favoritas {
+    margin-top: 60px;
+    padding-left: 20px;
+    padding-top: 80px;
+    background-color: var(--colorLight);
+    min-height: 350px;
 }
 
 
