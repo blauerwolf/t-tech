@@ -138,7 +138,6 @@ document.getElementById('noticias-container').addEventListener('click', (event) 
     }
 });
 
-
 document.addEventListener('DOMContentLoaded', () => {
     cargarFavoritos();
 });

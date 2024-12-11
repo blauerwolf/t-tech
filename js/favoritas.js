@@ -11,10 +11,10 @@ async function getNoticiaById(noticiaId) {
 }
 
 function crearDetalleNoticia(data) {
-    console.log(data);
 
     const row = document.createElement('div');
-    row.className = 'row row-noticia border rounded p-2 shadow';
+    row.id = data.id;
+    row.className = 'row row-noticia border rounded p-2 shadow fade-in';
 
     const colLeft = document.createElement('div');
     colLeft.className = 'col d-flex flex-column justify-content-between';
@@ -25,6 +25,7 @@ function crearDetalleNoticia(data) {
     img.alt = 'Imagen de la noticia';
 
     const button = document.createElement('button');
+    button.dataset.id = data.id;
     button.className = 'btn btn-danger';
     
     const icon = document.createElement('i');
@@ -74,28 +75,80 @@ function crearDetalleNoticia(data) {
     }
 }
 
+function sinNoticias() {
+    const contenedor = document.createElement('div');
+    contenedor.className = 'container my-5 fade-in';
+
+    const jumboBody = document.createElement('div');
+    jumboBody.className = 'p-5 text-center bg-body-tertiary rounded-3';
+
+    const jumboText = document.createElement('h1');
+    jumboText.className = 'text-body-emphasis';
+    jumboText.textContent = '¡Aun no hay noticias en tus favoritos!';
+
+    const jumboLead = document.createElement('p');
+    jumboLead.className = 'lead';
+    jumboLead.textContent = 'Visitá Noticias y dale like a las que te gusten para verlas acá';
+
+    jumboBody.appendChild(jumboText);
+    jumboBody.appendChild(jumboLead);
+    contenedor.appendChild(jumboBody);
+
+    const noticiasContainer = document.getElementById('listado-favoritas');
+    if (noticiasContainer) {
+        noticiasContainer.appendChild(contenedor);
+    } else {
+        console.error('El contenedor con el ID "noticias-container" no existe.');
+    }
+}
+
 function borrarNoticia(noticiaId) {
     let favoritosIds = JSON.parse(localStorage.getItem('noticiasFavoritas')) || [];
 
-    if (favoritosIds.includes(noticiaId)) {
-        favoritosIds = favoritosIds.filter((id) => id !== cardId);
+    const noticia = document.getElementById(noticiaId.toString());
+    if (noticia) {
+
+        if (favoritosIds.includes(noticiaId)) {
+            favoritosIds = favoritosIds.filter((id) => id !== noticiaId);
+        }
+
+        localStorage.setItem('noticiasFavoritas', JSON.stringify(favoritosIds));
+
+        noticia.classList.add('fade-out');
+        setTimeout(() => {
+            noticia.remove();
+        }, 500);
+
+        if (favoritosIds.length === 0) {
+            sinNoticias();
+        }
     }
-
-    localStorage.setItem('noticiasFavoritas', JSON.stringify(favoritosIds));
-
-    // TODO: Borrar el div con la noticia
 }
 
 function cargarDetalleFavoritos() {
     const favoritosId = JSON.parse(localStorage.getItem('noticiasFavoritas')) || [];
-    favoritosId.forEach(async (noticiaId) => {
 
-        const noticia = await getNoticiaById(noticiaId);
-        crearDetalleNoticia(noticia);
-    });
+    if (favoritosId.length === 0) {
+        sinNoticias();
+    } else {
+        favoritosId.forEach(async (noticiaId) => {
+
+            const noticia = await getNoticiaById(noticiaId);
+            crearDetalleNoticia(noticia);
+        });
+    }    
 }
 
 
 document.addEventListener('DOMContentLoaded', () => {
     cargarDetalleFavoritos();
+});
+
+document.getElementById('listado-favoritas').addEventListener('click', (event) => {
+    if (event.target.classList.contains('btn-danger')) {
+        const button = event.target;
+        const noticiaId = button.dataset.id;
+
+        borrarNoticia(noticiaId);
+    }
 });
