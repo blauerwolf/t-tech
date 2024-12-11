@@ -411,6 +411,29 @@ footer ul li {
 
 #listado-favoritas {
     min-height: 450px;
+    margin-bottom: 20px;
+}
+
+.row-noticia {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    background-color: white;
+}
+
+.noticia-titulo {
+    
+}
+
+.noticia-autor {
+    color: var(--colorPrimario);
+}
+
+.noticia-volanta {
+
+}
+
+.noticia-texto {
+
 }
 
 
