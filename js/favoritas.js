@@ -80,7 +80,7 @@ function sinNoticias() {
     contenedor.className = 'container my-5 fade-in';
 
     const jumboBody = document.createElement('div');
-    jumboBody.className = 'p-5 text-center bg-body-tertiary rounded-3';
+    jumboBody.className = 'p-5 text-center bg-body-tertiary rounded-3 shadow';
 
     const jumboText = document.createElement('h1');
     jumboText.className = 'text-body-emphasis';
@@ -119,8 +119,8 @@ function borrarNoticia(noticiaId) {
             noticia.remove();
         }, 500);
 
-        if (favoritosIds.length === 0) {
-            sinNoticias();
+        if (favoritosIds.length === 0) {            
+            setTimeout(() => { sinNoticias(); }, 500);
         }
     }
 }
