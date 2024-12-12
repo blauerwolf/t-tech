@@ -135,14 +135,24 @@ footer ul li {
     flex: 1;
 }
 
-#musica {
+#portada {
+    position: relative;
+    overflow: hidden; /* Evita que los elementos internos se desborden */
+    width: 100%; /* Ajustar al diseño deseado */
+    max-width: 800px; /* Ejemplo de ancho máximo */
+    margin: 0 auto; /* Centrar horizontalmente */
+    padding: 20px; /* Espaciado interno opcional */
+    background-color: #f7f7f7; /* Opcional: fondo para la sección */
+    border-radius: 10px; /* Opcional: esquinas redondeadas */
+    height: 450px;
+}
 
+#musica {
     margin-top: 60px;
     padding-left: 20px;
     padding-top: 80px;
     background-color: var(--colorLight);
     min-height: 350px;
-
 }
 
 #noticias {

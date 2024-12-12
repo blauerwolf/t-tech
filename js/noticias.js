@@ -147,29 +147,6 @@ function mostrarModal(noticia) {
 
     body.appendChild(contenedor);
 
-    
-    /*
-
-        <div class="modal" id="modal-noticias">
-      <div class="modal-dialog modal-dialog-scrollable modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 id="modal-title" class="modal-title fs-5"></h4>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-          </div>
-          <div id="modal-body" class="modal-body"></div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary btn-accent" data-bs-dismiss="modal">Cerrar</button>
-          </div>   
-        </div>
-      </div>
-    </div>
-
-
-
-
-
-    */
     const modal = new bootstrap.Modal(document.getElementById('modal-noticias'));
     modal.show();
 }
