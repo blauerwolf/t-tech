@@ -171,6 +171,7 @@ footer ul li {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    height: 480px;
 }
 
 #noticias {
