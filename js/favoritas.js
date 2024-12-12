@@ -1,15 +1,3 @@
-async function getNoticiaById(noticiaId) {
-    try {
-        const response = await axios.get(`https://api.provinciaradio.com.ar/v1/noticias/${noticiaId}`);
-
-        const noticia = response.data.data.noticia;
-        return noticia;
-
-    } catch (err) {
-        console.error(err);
-    }
-}
-
 function crearDetalleNoticia(data) {
 
     const row = document.createElement('div');
@@ -90,8 +78,14 @@ function sinNoticias() {
     jumboLead.className = 'lead';
     jumboLead.textContent = 'Visitá Noticias y dale like a las que te gusten para verlas acá';
 
+    const link = document.createElement('a');
+    link.className = 'btn btn-primary btn-accent';
+    link.href = 'index.html#noticias';
+    link.textContent = 'Ver noticias';
+
     jumboBody.appendChild(jumboText);
     jumboBody.appendChild(jumboLead);
+    jumboBody.appendChild(link);
     contenedor.appendChild(jumboBody);
 
     const noticiasContainer = document.getElementById('listado-favoritas');

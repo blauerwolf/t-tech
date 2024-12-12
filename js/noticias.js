@@ -25,9 +25,13 @@ function crearCard(cardId, imageUrl, title, description) {
     const footer = document.createElement('div');
     footer.className = 'card-footer-buttons d-flex justify-content-between align-items-center mt-auto';
 
-    const boton = document.createElement('a');
-    boton.className = 'btn btn-primary btn-accent';
+    const boton = document.createElement('button');
+    boton.type = 'button';
+    boton.className = 'btn btn-primary btn-accent btn-leer';
     boton.textContent = 'Leer más';
+    boton.dataset.bsToogle = "modal";
+    boton.dataset.bsTarget = "#modal-noticias";
+    boton.dataset.id = cardId;
 
     const likeButton = document.createElement('button');
     likeButton.className = 'like-btn';
@@ -105,6 +109,71 @@ function toogleFavoritos(cardId, icon) {
     localStorage.setItem('noticiasFavoritas', JSON.stringify(favoritosIds));
 }
 
+function mostrarModal(noticia) {
+    
+    const titulo = document.getElementById('modal-title');
+    titulo.textContent = noticia.titulo;
+
+    const body = document.getElementById('modal-body');
+    body.innerHTML = '';
+
+    const img = document.createElement('img');
+    img.className = 'img-thumbnail';
+    img.src = noticia.cartelera;
+    img.alt = 'Imagen de la noticia';
+
+    const autor = document.createElement('p')
+    autor.className = 'noticia-autor';
+    autor.textContent = noticia.autor;
+
+    const volanta = document.createElement('h4');
+    volanta.className = 'noticia-volanta';
+    volanta.textContent = noticia.volanta;
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(noticia.texto, "text/html");
+    
+    const texto = document.createElement('div');
+    texto.className = 'noticia-texto';
+    texto.innerHTML = doc.body.innerHTML;
+
+    const contenedor = document.createElement('div');
+    contenedor.className = 'container';
+
+    contenedor.appendChild(img);
+    contenedor.appendChild(autor);
+    contenedor.appendChild(volanta);
+    contenedor.appendChild(texto);
+
+    body.appendChild(contenedor);
+
+    
+    /*
+
+        <div class="modal" id="modal-noticias">
+      <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 id="modal-title" class="modal-title fs-5"></h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div id="modal-body" class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary btn-accent" data-bs-dismiss="modal">Cerrar</button>
+          </div>   
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    */
+    const modal = new bootstrap.Modal(document.getElementById('modal-noticias'));
+    modal.show();
+}
+
 
 (async() => {
 
@@ -128,6 +197,7 @@ const btnMasNoticias = document.getElementById("btnCargar")
 })
 
 
+// Like - unLike
 document.getElementById('noticias-container').addEventListener('click', (event) => {
     if (event.target.classList.contains('fa-heart')) {
         const icon = event.target;
@@ -135,6 +205,19 @@ document.getElementById('noticias-container').addEventListener('click', (event) 
         const cardId = button.dataset.cardId;
 
         toogleFavoritos(cardId, icon);
+    }
+});
+
+
+// Muestro el modal
+document.getElementById('noticias-container').addEventListener('click', async (event) => {
+    if (event.target.classList.contains('btn-leer')) {
+        const button = event.target;
+        const noticiaId = button.dataset.id;
+        const noticia = await getNoticiaById(noticiaId);
+        console.log(noticia);
+
+        mostrarModal(noticia);
     }
 });
 
