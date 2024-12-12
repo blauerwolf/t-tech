@@ -153,7 +153,24 @@ footer ul li {
     padding-left: 20px;
     padding-top: 80px;
     background-color: var(--colorLight);
-    min-height: 350px;
+    min-height: 450px;
+    
+}
+
+#musica::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    -webkit-filter: blur(20px); 
+    filter: blur(20px);
+    z-index: 1;
+    background: var(--background-image, url('https://via.placeholder.com/300x200')) no-repeat center/cover;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 #noticias {

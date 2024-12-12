@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const playerTrack = document.getElementById("player-track");
-    const bgArtwork = document.getElementById("player-bg-artwork");
+    //const bgArtwork = document.getElementById("player-bg-artwork");
+    const bgArtwork = document.getElementById("musica");
     const albumName = document.getElementById("album-name");
     const trackName = document.getElementById("track-name");
     const albumArt = document.getElementById("album-art");
@@ -192,7 +193,12 @@ document.addEventListener("DOMContentLoaded", function () {
         if (newActiveImg) newActiveImg.classList.add("active");
   
         bgArtworkUrl = newActiveImg ? newActiveImg.src : "";
-        bgArtwork.style.backgroundImage = `url(${bgArtworkUrl})`;
+        //bgArtwork.style.backgroundImage = `url(${bgArtworkUrl})`;
+        bgArtwork.style.setProperty(
+          '--background-image', 
+           `url(${bgArtworkUrl})`
+        );
+
       } else {
         currIndex += flag === 0 || flag === 1 ? -1 : 1;
       }
