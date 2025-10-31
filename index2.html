@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Musica y Noticias</title>
+    <title>Musica y Noticias - Portal de radio en vivo y actualidad</title>
     <script src="https://kit.fontawesome.com/6ec13d0188.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">  
@@ -35,19 +35,19 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#"><i class="fa-solid fa-house"></i> Inicio</a>
+                            <a class="nav-link" aria-current="page" href="#"><i class="fa-solid fa-house" aria-hidden="true"></i> Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fa-solid fa-newspaper"></i> Noticias</a>
+                            <a class="nav-link" href="#"><i class="fa-solid fa-newspaper" aria-hidden="true"></i> Noticias</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fa-solid fa-music"></i> Música</a>
+                            <a class="nav-link" href="#"><i class="fa-solid fa-music" aria-hidden="true"></i> Música</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contacto2.html"><i class="fa-regular fa-message"></i> Contacto</a>
+                            <a class="nav-link" href="contacto2.html"><i class="fa-regular fa-message" aria-hidden="true"></i> Contacto</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="favoritos2.html"><i class="fa-solid fa-user"></i> Favoritos</a>
+                            <a class="nav-link" href="favoritos2.html"><i class="fa-solid fa-user" aria-hidden="true"></i> Favoritos</a>
                         </li>
                     </ul>
                 </div>
@@ -91,17 +91,17 @@
                         </div>
                         <div id="player-controls">
                             <div class="control">
-                            <div class="button" id="play-previous">
+                            <div class="button" id="play-previous" aria-label="Emisora anterior">
                                 <i class="fas fa-backward"></i>
                             </div>
                             </div>
                             <div class="control">
-                            <div class="button" id="play-pause-button">
+                            <div class="button" id="play-pause-button" aria-lable="Reproducir o pausar">
                                 <i class="fas fa-play"></i>
                             </div>
                             </div>
                             <div class="control">
-                            <div class="button" id="play-next">
+                            <div class="button" id="play-next" aria-label="Emisora anterior">
                                 <i class="fas fa-forward"></i>
                             </div>
                             </div>
@@ -138,10 +138,10 @@
             <div class="content">
                 <h2>Seguinos en nuestras redes sociales</h2>
                 <ul>
-                    <li><a href="#"><i class="fa-brands fa-whatsapp"></i> Whatsapp</a></li>
-                    <li><a href="#"><i class="fa-brands fa-facebook"></i> Facebook</a></li>
-                    <li><a href="#"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
-                    <li><a href="#"><i class="fa-brands fa-x-twitter"></i> Twitter</a></li>
+                    <li><a href="#"><i class="fa-brands fa-whatsapp" aria-label="Enlace a Whatstapp"></i> Whatsapp</a></li>
+                    <li><a href="#"><i class="fa-brands fa-facebook" aria-label="Enlace a Facebook"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fa-brands fa-instagram" aria-label="Enlace a Instagram"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fa-brands fa-x-twitter" aria-label="Enlace a Twitter"></i> Twitter</a></li>
                 </ul>
             </div>
         </section>
@@ -187,16 +187,16 @@
     </footer>   
     
     <!-- Modal noticia -->
-    <div class="modal" id="modal-noticias">
+    <div class="modal" id="modal-noticias" aria-modal="true" aria-labelledby="modal-title">
       <div class="modal-dialog modal-dialog-scrollable modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <h4 id="modal-title" class="modal-title fs-5">Título de la noticia</h4>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
           </div>
           <div id="modal-body" class="modal-body"></div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary btn-accent" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary btn-accent" data-bs-dismiss="modal" aria-label="Cerrar">Cerrar</button>
           </div>   
         </div>
       </div>
