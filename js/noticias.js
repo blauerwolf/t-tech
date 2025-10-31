@@ -8,7 +8,7 @@ function crearCard(cardId, imageUrl, title, description) {
 
     const img = document.createElement('img');
     img.src = imageUrl;
-    img.alt = 'Imagen de la noticia';
+    img.alt = 'Imagen de la noticia' + title;
     img.className = 'card-img-top card-img-fixed';
 
     const cardBody = document.createElement('div');
@@ -36,9 +36,11 @@ function crearCard(cardId, imageUrl, title, description) {
     const likeButton = document.createElement('button');
     likeButton.className = 'like-btn';
     likeButton.dataset.cardId = cardId;
+    likeButton.ariaLabel = 'Añadir a favoritos';
     
     const likeIcon = document.createElement('i');
     likeIcon.className = 'fa-regular fa-heart pe-4';
+    likeIcon.ariaHidden = true;
 
     likeButton.appendChild(likeIcon);
     footer.appendChild(boton);
@@ -126,7 +128,7 @@ function mostrarModal(noticia) {
     autor.className = 'noticia-autor';
     autor.textContent = noticia.autor;
 
-    const volanta = document.createElement('h4');
+    const volanta = document.createElement('h3');
     volanta.className = 'noticia-volanta';
     volanta.textContent = noticia.volanta;
 
