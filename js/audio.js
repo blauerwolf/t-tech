@@ -13,10 +13,10 @@ audioPlayers.forEach(container => {
 
             if (audio.paused) {
                 audio.play();
-                playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                playPauseBtn.innerHTML = '<i class="fa-solid fa-pause" aria-hidden="true"></i>';
             } else {
                 audio.pause();
-                playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+                playPauseBtn.innerHTML = '<i class="fa-solid fa-play" aria-hidden="true"></i>';
             }
         }
 
@@ -27,7 +27,7 @@ audioPlayers.forEach(container => {
                 const otherPlayPauseBtn = otherContainer.querySelector(".play-btn");
                 if (otherAudio !== currentAudio) { // Si no es el audio actual
                     otherAudio.pause(); // Pausar el otro audio
-                    otherPlayPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>'; // Cambiar el ícono a "play"
+                    otherPlayPauseBtn.innerHTML = '<i class="fa-solid fa-play" aria-hidden="true"></i>'; // Cambiar el ícono a "play"
                 }
             });
         }
@@ -38,7 +38,7 @@ audioPlayers.forEach(container => {
 
         // Listener para el evento "ended" del audio y resetear el botón a play
         audio.addEventListener("ended", () => {
-            playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+            playPauseBtn.innerHTML = '<i class="fa-solid fa-play" aria-hidden="true"></i>';
             progressBar.value = 0; // Reiniciar la barra de progreso
             timeDisplay.textContent = "00:00 / 00:00"; // Reiniciar el tiempo mostrado
         });
