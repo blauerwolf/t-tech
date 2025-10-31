@@ -8,7 +8,7 @@ function crearCard(cardId, imageUrl, title, description) {
 
     const img = document.createElement('img');
     img.src = imageUrl;
-    img.alt = 'Imagen de la noticia' + title;
+    img.alt = `Imagen de la noticia: ${title}. ${descripcion}`;
     img.className = 'card-img-top card-img-fixed';
 
     const cardBody = document.createElement('div');
@@ -97,17 +97,23 @@ function cargarFavoritos() {
     });
 }
 
-function toogleFavoritos(cardId, icon) {
+function toogleFavoritos(cardId, icon, title) {
     let favoritosIds = JSON.parse(localStorage.getItem('noticiasFavoritas')) || [];
+    const button = icon.closest('button.like-btn');
 
     if (favoritosIds.includes(cardId)) {
         favoritosIds = favoritosIds.filter((id) => id !== cardId);
         icon.classList.remove('fa-solid');
         icon.classList.add('fa-regular');
+        button.ariaLabel = `Añadir ${title} a favoritos`;
+        button.ariaPressed = true;
+
     } else {
         favoritosIds.push(cardId);
         icon.classList.remove('fa-regular');
         icon.classList.add('fa-solid');
+        button.ariaLabel = `Quitar ${title} de favoritos`;
+        button.ariaPressed = true;
     }
 
     localStorage.setItem('noticiasFavoritas', JSON.stringify(favoritosIds));
@@ -193,7 +199,11 @@ document.getElementById('noticias-container').addEventListener('click', (event) 
         const button = icon.closest('button.like-btn');
         const cardId = button.dataset.cardId;
 
-        toogleFavoritos(cardId, icon);
+        const card = button.closest('button.like-btn');
+        const titleElement = card.querySelector('.card-title');
+        const title = titleElement ? titleElement.textContent : 'esta noticia';
+
+        toogleFavoritos(cardId, icon, title);
     }
 });
 
