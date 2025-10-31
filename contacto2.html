@@ -57,10 +57,16 @@
     <main>
         <div class="form-container">
             <h2>Formulario de Contacto</h2>
-            <form method="POST" id="contactForm" class="form-contact" action="https://formspree.io/f/xyzyjqkl">
+            <form method="POST" id="contactForm" class="form-contact" 
+                action="https://formspree.io/f/xyzyjqkl" novalidate>
+
                 <div class="form-group">
                     <label for="name">Nombre</label>
-                    <input type="text" id="name" name="name" placeholder="Ingresa tu nombre" required aria-required="true">
+                    <input type="text" id="name" name="name" 
+                        placeholder="Ingresa tu nombre" 
+                        required 
+                        aria-required="true"
+                        aria-describedby="name-help">
                 </div>
                 <div class="form-group">
                     <label for="email">Correo Electrónico</label>
@@ -68,7 +74,9 @@
                 </div>
                 <div class="form-group">
                     <label for="message">Mensaje</label>
-                    <textarea id="message" name="message" rows="5" placeholder="Escribe tu mensaje" ></textarea>
+                    <textarea id="message" name="message" rows="5" 
+                        placeholder="Escribe tu mensaje" 
+                        aria-describedby="message-help"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary btn-accent">Enviar</button>
             </form>

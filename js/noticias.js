@@ -8,13 +8,13 @@ function crearCard(cardId, imageUrl, title, description) {
 
     const img = document.createElement('img');
     img.src = imageUrl;
-    img.alt = 'Imagen de la noticia';
+    img.alt = `Imagen de la noticia: ${title}. ${description}`;
     img.className = 'card-img-top card-img-fixed';
 
     const cardBody = document.createElement('div');
     cardBody.className = 'card-body';
 
-    const cardTitle = document.createElement('h5');
+    const cardTitle = document.createElement('h3');
     cardTitle.className = 'card-title';
     cardTitle.textContent = title;
 
@@ -29,16 +29,20 @@ function crearCard(cardId, imageUrl, title, description) {
     boton.type = 'button';
     boton.className = 'btn btn-primary btn-accent btn-leer';
     boton.textContent = 'Leer más';
-    boton.dataset.bsToogle = "modal";
+    boton.dataset.bsToggle = "modal";
     boton.dataset.bsTarget = "#modal-noticias";
     boton.dataset.id = cardId;
+    boton.ariaLabel = `Leer más sobre ${title}`;
 
     const likeButton = document.createElement('button');
     likeButton.className = 'like-btn';
     likeButton.dataset.cardId = cardId;
+    likeButton.ariaLabel = `Añadir ${title} a favoritos`;
+    likeButton.ariaPressed = false;
     
     const likeIcon = document.createElement('i');
     likeIcon.className = 'fa-regular fa-heart pe-4';
+    likeIcon.ariaHidden = true;
 
     likeButton.appendChild(likeIcon);
     footer.appendChild(boton);
@@ -93,17 +97,23 @@ function cargarFavoritos() {
     });
 }
 
-function toogleFavoritos(cardId, icon) {
+function toogleFavoritos(cardId, icon, title) {
     let favoritosIds = JSON.parse(localStorage.getItem('noticiasFavoritas')) || [];
+    const button = icon.closest('button.like-btn');
 
     if (favoritosIds.includes(cardId)) {
         favoritosIds = favoritosIds.filter((id) => id !== cardId);
         icon.classList.remove('fa-solid');
         icon.classList.add('fa-regular');
+        button.ariaLabel = `Añadir ${title} a favoritos`;
+        button.ariaPressed = true;
+
     } else {
         favoritosIds.push(cardId);
         icon.classList.remove('fa-regular');
         icon.classList.add('fa-solid');
+        button.ariaLabel = `Quitar ${title} de favoritos`;
+        button.ariaPressed = true;
     }
 
     localStorage.setItem('noticiasFavoritas', JSON.stringify(favoritosIds));
@@ -120,13 +130,13 @@ function mostrarModal(noticia) {
     const img = document.createElement('img');
     img.className = 'img-thumbnail';
     img.src = noticia.cartelera;
-    img.alt = 'Imagen de la noticia';
+    img.alt = 'Imagen de la noticia' + noticia.titulo;
 
     const autor = document.createElement('p')
     autor.className = 'noticia-autor';
     autor.textContent = noticia.autor;
 
-    const volanta = document.createElement('h4');
+    const volanta = document.createElement('h3');
     volanta.className = 'noticia-volanta';
     volanta.textContent = noticia.volanta;
 
@@ -138,7 +148,7 @@ function mostrarModal(noticia) {
     texto.innerHTML = doc.body.innerHTML;
 
     const contenedor = document.createElement('div');
-    contenedor.className = 'container';
+    contenedor.className = 'container-fluid';
 
     contenedor.appendChild(img);
     contenedor.appendChild(autor);
@@ -147,8 +157,24 @@ function mostrarModal(noticia) {
 
     body.appendChild(contenedor);
 
-    const modal = new bootstrap.Modal(document.getElementById('modal-noticias'));
+    const modalElement = document.getElementById('modal-noticias');
+    const modal = new bootstrap.Modal(modalElement);
+    
+    modalElement.removeEventListener('hidden.bs.modal', handleModalClose);
+
+    function handleModalClose() {
+        document.body.style.overflow = '';
+        document.body.style.paddingRight = '';
+    }
+
+    modalElement.addEventListener('hidden.bs.modal', handleModalClose);
+
     modal.show();
+
+    const modalDialog = document.querySelector('#modal-noticias .modal-dialog');
+    modalDialog.setAttribute('role', 'dialog');
+    modalDialog.setAttribute('aria-modal', 'true');
+    modalDialog.setAttribute('aria-labelledby', 'modal-title');
 }
 
 
@@ -181,7 +207,11 @@ document.getElementById('noticias-container').addEventListener('click', (event) 
         const button = icon.closest('button.like-btn');
         const cardId = button.dataset.cardId;
 
-        toogleFavoritos(cardId, icon);
+        const card = button.closest('button.like-btn');
+        const titleElement = card.querySelector('.card-title');
+        const title = titleElement ? titleElement.textContent : 'esta noticia';
+
+        toogleFavoritos(cardId, icon, title);
     }
 });
 
@@ -200,4 +230,32 @@ document.getElementById('noticias-container').addEventListener('click', async (e
 
 document.addEventListener('DOMContentLoaded', () => {
     cargarFavoritos();
+});
+
+// Agregar evento global para manejar el cierre del modal
+document.addEventListener('DOMContentLoaded', function() {
+    const modalElement = document.getElementById('modal-noticias');
+    
+    modalElement.addEventListener('hidden.bs.modal', function() {
+        // Forzar restauración del body
+        document.body.classList.remove('modal-open');
+        document.body.style.overflow = '';
+        document.body.style.paddingRight = '';
+        
+        // Remover backdrop si existe
+        const backdrops = document.querySelectorAll('.modal-backdrop');
+        backdrops.forEach(backdrop => {
+            backdrop.remove();
+        });
+    });
+
+    // Manejar el evento de tecla Escape
+    modalElement.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const modal = bootstrap.Modal.getInstance(modalElement);
+            if (modal) {
+                modal.hide();
+            }
+        }
+    });
 });
