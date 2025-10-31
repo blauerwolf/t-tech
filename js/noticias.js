@@ -14,7 +14,7 @@ function crearCard(cardId, imageUrl, title, description) {
     const cardBody = document.createElement('div');
     cardBody.className = 'card-body';
 
-    const cardTitle = document.createElement('h5');
+    const cardTitle = document.createElement('h3');
     cardTitle.className = 'card-title';
     cardTitle.textContent = title;
 
@@ -29,14 +29,16 @@ function crearCard(cardId, imageUrl, title, description) {
     boton.type = 'button';
     boton.className = 'btn btn-primary btn-accent btn-leer';
     boton.textContent = 'Leer más';
-    boton.dataset.bsToogle = "modal";
+    boton.dataset.bsToggle = "modal";
     boton.dataset.bsTarget = "#modal-noticias";
     boton.dataset.id = cardId;
+    boton.ariaLabel = `Leer más sobre ${title}`;
 
     const likeButton = document.createElement('button');
     likeButton.className = 'like-btn';
     likeButton.dataset.cardId = cardId;
-    likeButton.ariaLabel = 'Añadir a favoritos';
+    likeButton.ariaLabel = `Añadir ${title} a favoritos`;
+    likeButton.ariaPressed = false;
     
     const likeIcon = document.createElement('i');
     likeIcon.className = 'fa-regular fa-heart pe-4';
@@ -122,7 +124,7 @@ function mostrarModal(noticia) {
     const img = document.createElement('img');
     img.className = 'img-thumbnail';
     img.src = noticia.cartelera;
-    img.alt = 'Imagen de la noticia';
+    img.alt = 'Imagen de la noticia' + noticia.titulo;
 
     const autor = document.createElement('p')
     autor.className = 'noticia-autor';
@@ -151,6 +153,14 @@ function mostrarModal(noticia) {
 
     const modal = new bootstrap.Modal(document.getElementById('modal-noticias'));
     modal.show();
+
+    const modalDialog = document.querySelector('#modal-noticias .modal-dialog');
+    modalDialog.setAttribute('role', 'dialog');
+    modalDialog.setAttribute('aria-modal', 'true');
+    modalDialog.setAttribute('aria-labelledby', 'modal-title');
+
+    // Mueve el foco al modal al abrirlo
+    setTimeout(() => modalDialog.focus(), 300);
 }
 
 

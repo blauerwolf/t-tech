@@ -10,11 +10,14 @@ function crearDetalleNoticia(data) {
     const img = document.createElement('img');
     img.className = 'img-thumbnail';
     img.src = data.cartelera;
-    img.alt = 'Imagen de la noticia';
+    img.alt = `Imagen de la noticia ${data.titulo}`;
 
     const button = document.createElement('button');
     button.dataset.id = data.id;
     button.className = 'btn btn-danger';
+    button.ariaLabel = `Eliminar la noticia: ${data.titulo} de tus favoritos`;
+    button.ariaPressed = false;
+    button.role = 'button';
     
     const icon = document.createElement('i');
     icon.className = 'fa-solid fa-trash';
@@ -22,7 +25,7 @@ function crearDetalleNoticia(data) {
     const colRight = document.createElement('div');
     colRight.className = 'col-9';
 
-    const titulo = document.createElement('h2');
+    const titulo = document.createElement('h3');
     titulo.className = 'noticia-titulo';
     titulo.textContent = data.titulo;
 
@@ -59,7 +62,7 @@ function crearDetalleNoticia(data) {
     if (noticiasContainer) {
         noticiasContainer.appendChild(row);
     } else {
-        console.error('El contenedor con el ID "noticias-container" no existe.');
+        console.error('El contenedor con el ID "listado-container" no existe.');
     }
 }
 
