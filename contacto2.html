@@ -14,17 +14,18 @@
     <link rel="manifest" href="assets/img/site.webmanifest">
 </head>
 <body>
+    <a href="#main" class="skip-link">Saltar al contenido principal</a>
     <!-- Encabezado -->
     <header>
-        <nav class="navbar navbar-expand-lg fixed-top shadow navbar-transparent">
+        <nav class="navbar navbar-expand-lg fixed-top shadow navbar-transparent" role="navigation" aria-label="Navegación principal">
             <div class="container">
                 <!-- Logotipo -->
                 <a class="navbar-brand" href="index.html">
-                    <img src="assets/img/logo3.png" alt="Logotipo de T-Tech, portal de música y noticias" height="85" class="d-inline-block align-text-top">
+                    <img src="assets/img/logo3.png" alt="Logotipo de Música y Noticias, portal de música y noticias" height="85" class="d-inline-block align-text-top">
                 </a>
     
                 <!-- Botón colapsable (para pantallas pequeñas) -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir el menú de navegación">
                     <span class="navbar-toggler-icon"></span>
                 </button>
     
@@ -59,11 +60,11 @@
             <form method="POST" id="contactForm" class="form-contact" action="https://formspree.io/f/xyzyjqkl">
                 <div class="form-group">
                     <label for="name">Nombre</label>
-                    <input type="text" id="name" name="name" placeholder="Ingresa tu nombre" >
+                    <input type="text" id="name" name="name" placeholder="Ingresa tu nombre" required aria-required="true">
                 </div>
                 <div class="form-group">
                     <label for="email">Correo Electrónico</label>
-                    <input type="email" id="email" name="email" placeholder="Ingresa tu correo" >
+                    <input type="email" id="email" name="email" placeholder="Ingresa tu correo" required aria-required="true">
                 </div>
                 <div class="form-group">
                     <label for="message">Mensaje</label>
@@ -80,7 +81,7 @@
     <footer>        
         <div class="footer-container">
             <div class="footer-column">
-                <img src="assets/img/logo3.png" alt="Logotipo de T-Tech, portal de música y noticias, pie de página">
+                <img src="assets/img/logo3.png" alt="Logotipo de Música y Noticias, portal de música y noticias, pie de página">
                 <p>Somos tu punto de encuentro entre la música y las noticias. Siempre actualizados. Siempre en vivo.</p>
             </div>
             <div class="footer-column">
