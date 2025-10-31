@@ -8,7 +8,11 @@ function crearCard(cardId, imageUrl, title, description) {
 
     const img = document.createElement('img');
     img.src = imageUrl;
-    img.alt = `Imagen de la noticia`;
+
+    const titulo = titulo || 'Noticia sin título';
+    const maxLen = 80;
+    const truncado = titulo.length > maxLen ? titulo.slice(0, maxLen) + '-' : titulo;
+    img.alt = `Imagen relacionada con: ${truncado}`;
     img.className = 'card-img-top card-img-fixed';
 
     const cardBody = document.createElement('div');
