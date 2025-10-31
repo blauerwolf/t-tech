@@ -97,7 +97,7 @@ function cargarFavoritos() {
     });
 }
 
-function toogleFavoritos(cardId, icon, title) {
+function toggleFavoritos(cardId, icon) {
     let favoritosIds = JSON.parse(localStorage.getItem('noticiasFavoritas')) || [];
     const button = icon.closest('button.like-btn');
 
@@ -105,14 +105,14 @@ function toogleFavoritos(cardId, icon, title) {
         favoritosIds = favoritosIds.filter((id) => id !== cardId);
         icon.classList.remove('fa-solid');
         icon.classList.add('fa-regular');
-        button.ariaLabel = `Añadir ${title} a favoritos`;
+        button.ariaLabel = `Añadir a favoritos`;
         button.ariaPressed = true;
 
     } else {
         favoritosIds.push(cardId);
         icon.classList.remove('fa-regular');
         icon.classList.add('fa-solid');
-        button.ariaLabel = `Quitar ${title} de favoritos`;
+        button.ariaLabel = `Quitar de favoritos`;
         button.ariaPressed = true;
     }
 
@@ -207,11 +207,7 @@ document.getElementById('noticias-container').addEventListener('click', (event) 
         const button = icon.closest('button.like-btn');
         const cardId = button.dataset.cardId;
 
-        const card = button.closest('button.like-btn');
-        const titleElement = card.querySelector('.card-title');
-        const title = titleElement ? titleElement.textContent : 'esta noticia';
-
-        toogleFavoritos(cardId, icon, title);
+        toggleFavoritos(cardId, icon);
     }
 });
 
