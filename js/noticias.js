@@ -148,7 +148,7 @@ function mostrarModal(noticia) {
     texto.innerHTML = doc.body.innerHTML;
 
     const contenedor = document.createElement('div');
-    contenedor.className = 'container';
+    contenedor.className = 'container-fluid';
 
     contenedor.appendChild(img);
     contenedor.appendChild(autor);
@@ -157,16 +157,24 @@ function mostrarModal(noticia) {
 
     body.appendChild(contenedor);
 
-    const modal = new bootstrap.Modal(document.getElementById('modal-noticias'));
+    const modalElement = document.getElementById('modal-noticias');
+    const modal = new bootstrap.Modal(modalElement);
+    
+    modalElement.removeEventListener('hidden.bs.modal', handleModalClose);
+
+    function handleModalClose() {
+        document.body.style.overflow = '';
+        document.body.style.paddingRight = '';
+    }
+
+    modalElement.addEventListener('hidden.bs.modal', handleModalClose);
+
     modal.show();
 
     const modalDialog = document.querySelector('#modal-noticias .modal-dialog');
     modalDialog.setAttribute('role', 'dialog');
     modalDialog.setAttribute('aria-modal', 'true');
     modalDialog.setAttribute('aria-labelledby', 'modal-title');
-
-    // Mueve el foco al modal al abrirlo
-    setTimeout(() => modalDialog.focus(), 300);
 }
 
 
@@ -222,4 +230,32 @@ document.getElementById('noticias-container').addEventListener('click', async (e
 
 document.addEventListener('DOMContentLoaded', () => {
     cargarFavoritos();
+});
+
+// Agregar evento global para manejar el cierre del modal
+document.addEventListener('DOMContentLoaded', function() {
+    const modalElement = document.getElementById('modal-noticias');
+    
+    modalElement.addEventListener('hidden.bs.modal', function() {
+        // Forzar restauración del body
+        document.body.classList.remove('modal-open');
+        document.body.style.overflow = '';
+        document.body.style.paddingRight = '';
+        
+        // Remover backdrop si existe
+        const backdrops = document.querySelectorAll('.modal-backdrop');
+        backdrops.forEach(backdrop => {
+            backdrop.remove();
+        });
+    });
+
+    // Manejar el evento de tecla Escape
+    modalElement.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const modal = bootstrap.Modal.getInstance(modalElement);
+            if (modal) {
+                modal.hide();
+            }
+        }
+    });
 });

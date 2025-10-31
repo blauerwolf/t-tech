@@ -347,3 +347,46 @@ footer ul li {
 .skip-link:focus {
   top: 0;
 }
+
+.modal {
+    backdrop-filter: blur(2px);
+}
+
+.modal-content {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.modal-header {
+    border-radius: 2px solid #e9ecef;
+    background-color: #f8f9fa;
+    border-radius: 12px 12px 0 0;
+}
+
+.modal-footer {
+    border-top: 1px solid #e9ecef;
+    background-color: #f8f9fa;
+    border-radius: 0 0 12px 12px;
+}
+
+/* Asegurar que el modal sea responsive */
+.modal-dialog {
+    margin: 1rem auto;
+    max-width: 95%;
+}
+
+@media (min-width: 992px) {
+    .modal-dialog {
+        max-width: 800px;
+    }
+}
+
+/* Fix para el backdrop */
+.modal-backdrop {
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-backdrop.show {
+    opacity: 0.5;
+}
