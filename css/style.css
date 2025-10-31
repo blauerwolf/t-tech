@@ -26,6 +26,16 @@
   padding: 0;
 }
 
+:focus {
+  outline: 3px solid HighLight;
+  outline-offset: 2px;
+}
+
+.button:focus {
+  outline: 3px solid #0a84ff;
+  outline-offset: 2px;
+}
+
 body {
   font-family: var(--font-primary);
   background-color: var(--colorLight);

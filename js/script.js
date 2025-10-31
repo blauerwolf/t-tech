@@ -3,13 +3,20 @@ function verificarForm() {
     let email = document.getElementById("email");
     let message = document.getElementById("message");
 
+    if (!email.validity.valid) {
+        email.setAttribute('aria-invalid', 'true');
+        document.getElementById('errorMessage').style.display = 'block';
+    } else {
+        email.removeAttribute('aria-invalid');
+    }
+
     if (name.value.trim() === "" && 
         email.value.trim() === "" &&
         message.value.trim() === ""
     ) {
         return false;
     } else {
-        return true;
+        return email.validity.valid && true;
     }
 }
 

@@ -54,7 +54,7 @@
     </header>   
     
 
-    <main>
+    <main id="main">
         <div class="form-container">
             <h2>Formulario de Contacto</h2>
             <form method="POST" id="contactForm" class="form-contact" 
@@ -70,7 +70,8 @@
                 </div>
                 <div class="form-group">
                     <label for="email">Correo Electrónico</label>
-                    <input type="email" id="email" name="email" placeholder="Ingresa tu correo" required aria-required="true">
+                    <input type="email" id="email" name="email" placeholder="Ingresa tu correo" required aria-required="true" aria-describedby="email-help">
+                    <span id="email-help" class="form-text visually-hidden">Tu correo será utilizado para responder tus consultas.</span>
                 </div>
                 <div class="form-group">
                     <label for="message">Mensaje</label>

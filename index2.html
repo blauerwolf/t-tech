@@ -61,7 +61,7 @@
 
 
     <!-- Principal -->
-    <main>
+    <main id="main">
         <!-- Secciones -->
          <h1 class="visually-hidden">Música y Noticias - En vivo</h1>
         <section id="musica">
@@ -86,27 +86,27 @@
                         </div>
                         <div id="player-content">
                         <div id="album-art">
-                            <img src="assets/img/unlp.jpg" class="active" id="_1" alt="Logo Radio Universidad AM 1390" />
-                            <img src="assets/img/unlp2.jpg" id="_2" alt="Logo Radio Universidad FM 107.5" />
-                            <img src="https://api.provinciaradio.com.ar/v1/suena/cover/am" id="_3" alt="Logo Radio Provincia AM 1270" />
-                            <img src="https://api.provinciaradio.com.ar/v1/suena/cover/fm" id="_4" alt="Logo Radio Provincia FM 97.1" />
+                            <img src="assets/img/unlp.jpg" class="active" id="_1" alt="" />
+                            <img src="assets/img/unlp2.jpg" id="_2" alt="" />
+                            <img src="https://api.provinciaradio.com.ar/v1/suena/cover/am" id="_3" alt="" />
+                            <img src="https://api.provinciaradio.com.ar/v1/suena/cover/fm" id="_4" alt="" />
                             <div id="buffer-box">Cargando ...</div>
                         </div>
                         <div id="player-controls">
                             <div class="control">
-                            <div class="button" id="play-previous" aria-label="Emisora anterior">
+                            <button class="button" id="play-previous" aria-label="Emisora anterior">
                                 <i class="fas fa-backward" aria-hidden="true"></i>
-                            </div>
+                            </button>
                             </div>
                             <div class="control">
-                            <div class="button" id="play-pause-button" aria-label="Reproducir o pausar">
+                            <button class="button" id="play-pause-button" aria-label="Reproducir o pausar">
                                 <i class="fas fa-play" aria-hidden="true"></i>
-                            </div>
+                            </button>
                             </div>
                             <div class="control">
-                            <div class="button" id="play-next" aria-label="Emisora anterior">
+                            <button class="button" id="play-next" aria-label="Emisora anterior">
                                 <i class="fas fa-forward" aria-hidden="true"></i>
-                            </div>
+                            </button>
                             </div>
                         </div>
                         </div>
@@ -190,7 +190,7 @@
     </footer>   
     
     <!-- Modal noticia -->
-    <div class="modal" id="modal-noticias" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-body">
+    <div class="modal" id="modal-noticias" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-body">
       <div class="modal-dialog modal-dialog-scrollable modal-lg">
         <div class="modal-content">
           <div class="modal-header">
