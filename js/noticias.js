@@ -8,7 +8,7 @@ function crearCard(cardId, imageUrl, title, description) {
 
     const img = document.createElement('img');
     img.src = imageUrl;
-    img.alt = `Imagen de la noticia: ${title}. ${description}`;
+    img.alt = `Imagen de la noticia`;
     img.className = 'card-img-top card-img-fixed';
 
     const cardBody = document.createElement('div');
@@ -130,7 +130,7 @@ function mostrarModal(noticia) {
     const img = document.createElement('img');
     img.className = 'img-thumbnail';
     img.src = noticia.cartelera;
-    img.alt = 'Imagen de la noticia' + noticia.titulo;
+    img.alt = 'Imagen de la noticia';
 
     const autor = document.createElement('p')
     autor.className = 'noticia-autor';
