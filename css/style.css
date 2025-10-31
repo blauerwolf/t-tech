@@ -215,6 +215,7 @@ footer ul li {
     flex-direction: column;
     height: 100%;
     min-height: 450px; /* Altura mínima consistente */
+    transition: all 0.3s easi-in-out;
 }
 
 .card-img-fixed {
@@ -255,6 +256,7 @@ footer ul li {
 
 .card:hover {
   transform: translateY(-0.625rem);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
 }
 
 .like-btn {
