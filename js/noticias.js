@@ -32,7 +32,7 @@ function crearCard(cardId, imageUrl, title, description) {
     boton.dataset.bsToggle = "modal";
     boton.dataset.bsTarget = "#modal-noticias";
     boton.dataset.id = cardId;
-    boton.ariaLabel = `Leer más sobre`;
+    boton.ariaLabel = `Leer más sobre: ${title}`;
 
     const likeButton = document.createElement('button');
     likeButton.className = 'like-btn';
