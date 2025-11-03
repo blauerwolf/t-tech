@@ -386,6 +386,10 @@ footer ul li {
     max-width: 95%;
 }
 
+.control-button {
+  border: gray;
+}
+
 @media (min-width: 992px) {
     .modal-dialog {
         max-width: 800px;
