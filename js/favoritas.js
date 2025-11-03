@@ -73,7 +73,7 @@ function sinNoticias() {
     const jumboBody = document.createElement('div');
     jumboBody.className = 'p-5 text-center bg-body-tertiary rounded-3 shadow';
 
-    const jumboText = document.createElement('h1');
+    const jumboText = document.createElement('h2');
     jumboText.className = 'text-body-emphasis';
     jumboText.textContent = '¡Aun no hay noticias en tus favoritos!';
 
