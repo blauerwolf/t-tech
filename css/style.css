@@ -387,7 +387,7 @@ footer ul li {
 }
 
 .control-button {
-  border: gray;
+  border: #d5d5d5;
 }
 
 @media (min-width: 992px) {
